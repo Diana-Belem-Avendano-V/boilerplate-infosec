@@ -26,7 +26,7 @@ app.use(helmet.contentSecurityPolicy({
   scriptSrc: ["'self'", "trusted-cdn.com"]
   }
 }))
-
+console.log("BCrypt cargado correctamente:", bcrypt);
 module.exports = app;
 
 

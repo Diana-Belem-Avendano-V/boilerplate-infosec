@@ -9,6 +9,37 @@ app.disable("x-powered-by");
 var fs = require("fs");
 var path = require("path");
 
+/*Code written by  myself begins here*/
+
+const helmet = require('helmet');
+const bcrypt = require('bcrypt');
+
+app.use(helmet.hidePoweredBy());
+app.use(helmet.frameguard({ action: 'DENY'}));
+app.use(helmet.xssFilter());
+app.use(helmet.noSniff());
+app.use(helmet.ieNoOpen());
+
+const ninetyDaysInSeconds = 90*24*60*60;
+
+app.use(helmet.hsts({
+  maxAge: ninetyDaysInSeconds,
+  force: true
+}));
+
+app.use(helmet.dnsPrefetchControl());
+app.use(helmet.noCache());
+
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+  defaultSrc: ["'self'"],
+  scriptSrc: ["'self'", "trusted-cdn.com"]
+  }
+}))
+console.log("BCrypt cargado correctamente:", bcrypt);
+
+/*Code written by  myself finnishes here*/
+
 app.use(function (req, res, next) {
   res.set({
     "Access-Control-Allow-Origin": "*",

@@ -11,8 +11,8 @@ var path = require("path");
 
 /*Code written by  myself begins here*/
 
-const helmet = require('helmet');
-const bcrypt = require('bcrypt');
+var helmet = require('helmet');
+var bcrypt = require('bcrypt');
 
 app.use(helmet.hidePoweredBy());
 app.use(helmet.frameguard({ action: 'DENY'}));
@@ -20,7 +20,7 @@ app.use(helmet.xssFilter());
 app.use(helmet.noSniff());
 app.use(helmet.ieNoOpen());
 
-const ninetyDaysInSeconds = 90*24*60*60;
+var ninetyDaysInSeconds = 90*24*60*60;
 
 app.use(helmet.hsts({
   maxAge: ninetyDaysInSeconds,

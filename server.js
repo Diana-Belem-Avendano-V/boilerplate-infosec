@@ -7,38 +7,8 @@ var express = require("express");
 var app = express();
 app.disable("x-powered-by");
 var fs = require("fs");
-var path = require("path");
-
-/*Code written by  myself begins here*/
-
-var helmet = require("helmet");
 var bcrypt = require("bcrypt");
-
-app.use(helmet.hidePoweredBy());
-app.use(helmet.frameguard({ action: 'DENY'}));
-app.use(helmet.xssFilter());
-app.use(helmet.noSniff());
-app.use(helmet.ieNoOpen());
-
-var ninetyDaysInSeconds = 90*24*60*60;
-
-app.use(helmet.hsts({
-  maxAge: ninetyDaysInSeconds,
-  force: true
-}));
-
-app.use(helmet.dnsPrefetchControl());
-app.use(helmet.noCache());
-
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-  defaultSrc: ["'self'"],
-  scriptSrc: ["'self'", "trusted-cdn.com"]
-  }
-}))
-console.log("BCrypt cargado correctamente:", bcrypt);
-
-/*Code written by  myself finnishes here*/
+var path = require("path");
 
 app.use(function (req, res, next) {
   res.set({

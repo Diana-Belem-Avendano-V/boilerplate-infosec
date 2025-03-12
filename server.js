@@ -11,8 +11,8 @@ var path = require("path");
 
 /*Code written by  myself begins here*/
 
-var helmet = require('helmet');
-var bcrypt = require('bcrypt');
+var helmet = require("helmet");
+var bcrypt = require("bcrypt");
 
 app.use(helmet.hidePoweredBy());
 app.use(helmet.frameguard({ action: 'DENY'}));
